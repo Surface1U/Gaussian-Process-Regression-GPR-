@@ -8,10 +8,6 @@ with open('your file path.json') as f:
 
 # Извлечь значение поля "body"
 body = data['body']
-
-# Вывести значение поля "body"
-
-
 # Преобразовать строку "body" в объект Python
 json_data = json.loads(body)
 
