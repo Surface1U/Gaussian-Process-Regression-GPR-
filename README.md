@@ -4,6 +4,10 @@ ________________________________________________________________
 # feature 1 
 A sketch of the model has been added. Revision required 
 
+### What you need to add: 
+1) add a few more characteristics to the algorithm that I wrote
+2) checking whether there are relevant metrics in the file, if not, then go next
+
 
 
 
