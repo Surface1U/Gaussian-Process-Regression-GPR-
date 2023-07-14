@@ -35,37 +35,50 @@ def to_dir(yyyy, mm, dd):
         mms = str(mm)
     return str(yyyy) + "-" + str(mms) + "-" + str(dds)
 
+path1 = 'your path/json'
+dd = 21
+mm = 1
+yyyy = 2023
+listik = [
+    "Metrics.Latency",
+    "Status.Aborted_clients",
+    "Status.Aborted_connects",
+    "Status.Acl_cache_items_count",
+    "Status.Binlog_cache_disk_use",
+    "Status.Binlog_cache_use",
+    "Status.Binlog_stmt_cache_disk_use",
+    "Status.Binlog_stmt_cache_use"
+]
 
-path1 = 'D:/Leto/Data'
-dd = 1
-mm = 12
-yyyy = 2022
-listik = ["innodb_dedicated_server", "innodb_doublewrite_batch_size", "innodb_doublewrite_files", "innodb_doublewrite_pages", "innodb_log_files_in_group", "innodb_log_spin_cpu_abs_lwm", "innodb_log_spin_cpu_pct_hwm", "innodb_log_wait_for_flush_spin_hwm", "max_relay_log_size", "open_files_limit", "parser_max_mem_size", "relay_log_space_limit", "rpl_read_size", "stored_program_definition_cache", "tablespace_definition_cache", "temptable_max_ram"]
 
-with open("data.csv", mode="w", encoding='utf-8') as w_file:
-    file_writer = csv.writer(w_file, delimiter=",", lineterminator="\r")
+with open("data.csv", mode="w", encoding='utf-8', newline='') as w_file:
+    file_writer = csv.writer(w_file, delimiter=",")
     file_writer.writerow(listik)
     while True:
         try:
             path2 = to_dir(yyyy, mm, dd)
-            path = path1 + "/" + path2
+            path = os.path.join(path1, path2)
             for filename in glob.glob(os.path.join(path, '*.json')):
-                with open(os.path.join(os.getcwd(), filename), 'r') as f:
+                with open(filename, 'r') as f:
                     print(filename)
                     json_str = f.read()
                     data = json.loads(json_str)
-                    l = []
-                    s2 = ""
-                    for i in range(len(listik)):
-                        try:
-                            s1 = listik[i]
-                            s2 = data[s1]
-                            l.append(str(s2))
-                        except:
-                            l.append("nill")
-                    if l != ["nill", "nill", "nill", "nill", "nill", "nill", "nill", "nill", "nill", "nill", "nill", "nill", "nill", "nill", "nill", "nill"]:
-                        file_writer.writerow(l)
-                        print("!!!!!!!!")
+                    row_data = []
+                    for item in listik:
+                        keys = item.split('.')
+                        value = data
+                        for key in keys:
+                            if key in value:
+                                value = value[key]
+                            else:
+                                value = None
+                                break
+                        if value is not None:
+                            row_data.append(str(value))
+                        else:
+                            row_data.append("nill")
+                    file_writer.writerow(row_data)
+                    print("!!!!!!!!")
             yyyy, mm, dd = add_day(yyyy, mm, dd)
         except:
             break
