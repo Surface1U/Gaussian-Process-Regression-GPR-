@@ -18,6 +18,7 @@ def str_col_remove(data, values):
 data = str_col_remove(data, values)
 print(data)
 
+
 def del_previous(cell):
     if isinstance(cell, str) and re.search(r'Previous value : (\d+)', cell):
         numeric = re.findall(r'\d+', cell)
