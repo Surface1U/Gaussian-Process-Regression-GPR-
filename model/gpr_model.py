@@ -1,29 +1,27 @@
-import json
+import pandas as pd
 import numpy as np
+from sklearn.model_selection import train_test_split
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF
 
-with open('C:/Users/Alexander/Desktop/storage/json/2023-01-21/0ddcaee1-74d9-4291-88d3-6c0b877a83d9.json') as f:
-    data = json.load(f)
+# Загрузка данных из CSV файла
+# data = pd.read_csv("C:/Users/Alexander/SummerPractice2023/SummerPractice2023/test_data/test1.csv")
+data = pd.read_csv('C:/Users/Alexander/SummerPractice2023/SummerPractice2023/test_data/test1.csv', delimiter=";")
 
-body = data['body']
-# Преобразовать строку "body" в объект Python
-json_data = json.loads(body)
+# Извлечение признаков (всех столбцов, кроме последнего) и целевой переменной (последнего столбца)
+X = data.iloc[:, :12]
+y = data.iloc[:, 12]
 
-# Извлечь данные из объекта JSON
-metrics = json_data['Metrics']
-latency = metrics['Latency']
-innodb_doublewrite_files = metrics['innodb_doublewrite_files']
+# Разделение данных на обучающую и тестовую выборки (80% обучающих данных, 20% тестовых данных)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Преобразовать данные в формат numpy array
-X = np.array([2])  # Здесь представлен только один входной признак '1', вы можете добавить больше признаков
-X = X.reshape(-1, 1)  # Изменить форму массива на двумерный
-y = np.array([float(latency)], [float(innodb_doublewrite_files )])
-
-# Создать модель GPR с выбранным ядром
+# Создание модели GPR с выбранным ядром
 kernel = RBF()
 gpr = GaussianProcessRegressor(kernel=kernel)
 
-# Обучить модель на данных
-gpr.fit(X, y)
-print(metrics)
+# Обучение модели на обучающих данных
+gpr.fit(X_train, y_train)
+
+# Оценка производительности модели на тестовых данных
+score = gpr.score(X_test, y_test)
+print("Score on test data:", score)
