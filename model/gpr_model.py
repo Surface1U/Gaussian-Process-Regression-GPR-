@@ -6,7 +6,7 @@ from sklearn.gaussian_process.kernels import RBF
 
 # Загрузка данных из CSV файла
 # data = pd.read_csv("C:/Users/Alexander/SummerPractice2023/SummerPractice2023/test_data/test1.csv")
-data = pd.read_csv('C:/Users/Alexander/SummerPractice2023/SummerPractice2023/test_data/test2.csv', delimiter=";")
+data = pd.read_csv('C:/Users/Alexander/SummerPractice2023/SummerPractice2023/test_data/test6.csv', delimiter=";")
 
 # Извлечение признаков (всех столбцов, кроме последнего) и целевой переменной (последнего столбца)
 #test1
