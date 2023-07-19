@@ -3,10 +3,11 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF
+import csv
 
 # Загрузка данных из CSV файла
 # data = pd.read_csv("C:/Users/Alexander/SummerPractice2023/SummerPractice2023/test_data/test1.csv")
-data = pd.read_csv('C:/Users/Alexander/SummerPractice2023/SummerPractice2023/test_data/test6.csv', delimiter=";")
+data = pd.read_csv('C:/Users/Alexander/SummerPractice2023/data.csv', delimiter=";")
 
 # Извлечение признаков (всех столбцов, кроме последнего) и целевой переменной (последнего столбца)
 #test1
@@ -20,30 +21,37 @@ data = pd.read_csv('C:/Users/Alexander/SummerPractice2023/SummerPractice2023/tes
 # X = data.iloc[:, 93:105]  # Извлечь все строки и столбцы с 14 по 85
 # y = data.iloc[:, 93:105]
 
-#test4
+# #test4
 X = data.iloc[:, 106:121]
 y = data.iloc[:, 106:121]
 
-
-
-# Разделение данных на обучающую и тестовую выборки (80% обучающих данных, 20% тестовых данных)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Создание модели GPR с выбранным ядром
+# Создать модель GPR с выбранным ядром
 kernel = RBF()
 gpr = GaussianProcessRegressor(kernel=kernel)
 
-# Обучение модели на обучающих данных
-gpr.fit(X_train, y_train)
+# Обучить модель на данных
+gpr.fit(X, y)
 
-# Оценка производительности модели на тестовых данных
-score = gpr.score(X_test, y_test)
-print("Score on test data:", score)
+# Вывести гиперпараметры модели
+with open("output.csv", mode="w", encoding="utf-8", newline='') as w_file:
+    file_writer = csv.writer(w_file, delimiter=",")
+    file_writer.writerow(["Hyperparameters"])
+    for hyperparameter in gpr.kernel_.get_params():
+        file_writer.writerow([str(hyperparameter)])
 
-y_pred = gpr.predict(X)
-print(y_pred)
+    file_writer.writerow([])
+    file_writer.writerow(["Covariance Function"])
+    covariance_matrix = gpr.kernel_(X)
+    for i in range(len(covariance_matrix)):
+        file_writer.writerow(covariance_matrix[i])
 
+    file_writer.writerow([])
+    file_writer.writerow(["Predictions"])
+    predictions, std = gpr.predict(X, return_std=True)
+    for i in range(len(X)):
+        file_writer.writerow([predictions[i], std[i]])
 
+print("Done")
 
 
 
