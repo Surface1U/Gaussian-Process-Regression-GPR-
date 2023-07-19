@@ -6,7 +6,7 @@ data = pd.read_csv('../metrics/data1.csv', sep=",")
 
 print(data)
 
-values = ["ON", "OFF", "all", "deleted"]
+values = ["ON", "OFF", "all", "deleted", "DATABASE"]
 
 def str_col_remove(data, values):
     col_remove = []
@@ -25,6 +25,9 @@ def del_previous(cell):
     return cell
 
 data = data.applymap(del_previous)
+
+data.replace(' ', pd.NA, inplace=True)
+data.fillna(0, inplace=True)
 
 data.to_csv("../metrics/updated_data1.csv", index=False)
 print(data)
