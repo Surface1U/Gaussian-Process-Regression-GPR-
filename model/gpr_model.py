@@ -1,37 +1,32 @@
 import pandas as pd
 import numpy as np
+<<<<<<< Branchless
+import pandas as pd
+import joblib
+from sklearn.metrics import f1_score
+=======
 from sklearn.model_selection import train_test_split
+>>>>>>> main
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF
 import csv
+# Загрузка данных из CSV без разделительных столбцов "|||"
+data = pd.read_csv('../metrics/updated_data1.csv', sep=',', usecols=lambda col: '|||' not in col)
+# print(data)
 
-# Загрузка данных из CSV файла
-# data = pd.read_csv("C:/Users/Alexander/SummerPractice2023/SummerPractice2023/test_data/test1.csv")
-data = pd.read_csv('C:/Users/Alexander/SummerPractice2023/data.csv', delimiter=";")
+X = data.iloc[:, :-5]
+y = data.iloc[:, -2]
+X = X.values
+y = y.values
 
-# Извлечение признаков (всех столбцов, кроме последнего) и целевой переменной (последнего столбца)
-#test1
-# X = data.iloc[:, :12]
-# y = data.iloc[:, 12]
-#test2
-# X = data.iloc[:, 14:92]  # Извлечь все строки и столбцы с 14 по 85
-# y = data.iloc[:, 14:92]
-
-# # #test3
-# X = data.iloc[:, 93:105]  # Извлечь все строки и столбцы с 14 по 85
-# y = data.iloc[:, 93:105]
-
-# #test4
-X = data.iloc[:, 106:121]
-y = data.iloc[:, 106:121]
-
-# Создать модель GPR с выбранным ядром
 kernel = RBF()
 gpr = GaussianProcessRegressor(kernel=kernel)
 
-# Обучить модель на данных
 gpr.fit(X, y)
-
+# Обучить модель на данных
+model_name = 'gpr_trained_model.joblib'
+joblib.dump(gpr, model_name)
+print("Saved model to disk")
 # Вывести гиперпараметры модели
 with open("output.csv", mode="w", encoding="utf-8", newline='') as w_file:
     file_writer = csv.writer(w_file, delimiter=",")
@@ -52,7 +47,4 @@ with open("output.csv", mode="w", encoding="utf-8", newline='') as w_file:
         file_writer.writerow([predictions[i], std[i]])
 
 print("Done")
-
-
-
 
