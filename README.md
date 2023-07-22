@@ -741,7 +741,30 @@ Negative Log Likelihood: 7.306630254159028e+40
 Speed of convergence of parameter estimates: 1.0
 Speed of convergence of predictions: 0.0
 
+# test1.csv
 
+Optimal kernel hyperparameters:
+Length Scale: 100000.00000000001
+Negative Log Likelihood: 2.9291278004543295e+19
+Speed of convergence of parameter estimates: 1.0
+Speed of convergence of predictions: 0.0
+
+# test3.csv
+
+Optimal kernel hyperparameters:
+Length Scale: 100000.00000000001
+Negative Log Likelihood: 5.301198696982859e+18
+Speed of convergence of parameter estimates: 1.0
+Speed of convergence of predictions: 0.0
+
+
+# test4.csv
+
+Optimal kernel hyperparameters:
+Length Scale: 100000.00000000001
+Negative Log Likelihood: 1.4128745816341852e+39
+Speed of convergence of parameter estimates: 1.0
+Speed of convergence of predictions: 0.0
 
 
 _______________________________________________________________
