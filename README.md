@@ -733,6 +733,14 @@ Score on test data: 0.9333303134970667
  [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00
    0.00000000e+00  0.00000000e+00]]
 
+   # test2.csv
+
+Optimal kernel hyperparameters:
+Length Scale: 100000.00000000001
+Negative Log Likelihood: 7.306630254159028e+40
+Speed of convergence of parameter estimates: 1.0
+Speed of convergence of predictions: 0.0
+
 
 
 
