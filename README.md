@@ -1,14 +1,11 @@
-# SummerPractice2023
-We need to reduce latency
+# Gaussian Process Regression (GPR)
 ________________________________________________________________
-# feature 1
-A sketch of the model has been added. Revision required
-# feature 2
-Added reader for json to csv
 
-### What you need to add:
-1) add a few more characteristics to the algorithm that I wrote
-2) checking whether there are relevant metrics in the file, if not, then go next
+# What have we done?
+
+gpr_model.py directly extracts data from csv files and reproduces the received data. The learning results are saved in csv files, which are stored in the csvs folder. The optimal values for the kernel hyperparameters are shown below. For parameters from certain MySQL versions and optimal values FOR ALL PARAMETERS FROM JSON files.
+
+
 
 
 ### test1
@@ -377,7 +374,7 @@ Score on test data: 0.9333303134970667
  [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00
    0.00000000e+00  0.00000000e+00]]
 
-   # test2.csv
+# Knobs Tuned in MySQL 5.6 and higher
 
 Optimal kernel hyperparameters:
 Length Scale: 100000.00000000001
@@ -385,7 +382,7 @@ Negative Log Likelihood: 7.306630254159028e+40
 Speed of convergence of parameter estimates: 1.0
 Speed of convergence of predictions: 0.0
 
-# test1.csv
+# for MySQL versions 5.6 and higher
 
 Optimal kernel hyperparameters:
 Length Scale: 100000.00000000001
@@ -393,7 +390,7 @@ Negative Log Likelihood: 2.9291278004543295e+19
 Speed of convergence of parameter estimates: 1.0
 Speed of convergence of predictions: 0.0
 
-# test3.csv
+# Knobs Tuned in MySQL 5.7 and Higher
 
 Optimal kernel hyperparameters:
 Length Scale: 100000.00000000001
@@ -402,7 +399,7 @@ Speed of convergence of parameter estimates: 1.0
 Speed of convergence of predictions: 0.0
 
 
-# test4.csv
+# Knobs Tuned in MySQL 8
 
 Optimal kernel hyperparameters:
 Length Scale: 100000.00000000001
@@ -411,7 +408,7 @@ Speed of convergence of parameter estimates: 1.0
 Speed of convergence of predictions: 0.0
 
 
-# data.csv
+# data.csv 
 
 Optimal kernel hyperparameters:
 Length Scale: 100000.00000000001
@@ -419,4 +416,3 @@ Negative Log Likelihood: 7.306630254159368e+40
 Speed of convergence of parameter estimates: 1.0
 Speed of convergence of predictions: 0.0
 _______________________________________________________________
-## !!! When you add your own something, then describe it here (where are the features) !!!
