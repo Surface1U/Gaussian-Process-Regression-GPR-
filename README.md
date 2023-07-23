@@ -411,5 +411,12 @@ Speed of convergence of parameter estimates: 1.0
 Speed of convergence of predictions: 0.0
 
 
+# data.csv
+
+Optimal kernel hyperparameters:
+Length Scale: 100000.00000000001
+Negative Log Likelihood: 7.306630254159368e+40
+Speed of convergence of parameter estimates: 1.0
+Speed of convergence of predictions: 0.0
 _______________________________________________________________
 ## !!! When you add your own something, then describe it here (where are the features) !!!
