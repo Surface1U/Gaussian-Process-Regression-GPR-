@@ -3,7 +3,13 @@ ________________________________________________________________
 
 # What have we done?
 
-gpr_model.py directly extracts data from csv files and reproduces the received data. The learning results are saved in csv files, which are stored in the csvs folder. The optimal values for the kernel hyperparameters are shown below. For parameters from certain MySQL versions and optimal values FOR ALL PARAMETERS FROM JSON files.
+gpr_model.py directly extracts data from csv files and reproduces the received data. The learning results are saved in csv files, which are stored in the csvs folder (
+## one.csv - for MySQL versions 5.6 and higher, 
+## two.csv - Knobs Tuned in MySQL 5.6 and higher, 
+## three.csv - Knobs Tuned in MySQL 5.7 and Higher, 
+## thre.csv - Knobs Tuned in MySQL 8
+).
+The optimal values for the kernel hyperparameters are shown below. For parameters from certain MySQL versions and optimal values FOR ALL PARAMETERS FROM JSON files.
 
 
 
@@ -18,9 +24,6 @@ Score on test data: 0.7641731141736772
 # Knobs Tuned in MySQL 5.6 and higher
 Score on test data: -6.240741416508203e+28
 prediction values
-
-
-
 
 # Knobs Tuned in MySQL 5.7 and Higher
 Score on test data: 0.6666666635046372
