@@ -3,6 +3,8 @@ ________________________________________________________________
 
 # What have we done?
 
+### A program has been developed that automatically extracts the necessary values from json files (../model/ searching_keys.py)!
+
 gpr_model.py directly extracts data from csv files and reproduces the received data. The learning results are saved in csv files, which are stored in the csvs folder (
 ## one.csv - for MySQL versions 5.6 and higher, 
 ## two.csv - Knobs Tuned in MySQL 5.6 and higher, 
